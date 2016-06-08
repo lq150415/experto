@@ -69,11 +69,10 @@ class LoginController extends Controller
         $medico->CIMed= $request->input('cimed');
         $medico->UsuMed= $request->input('usumed');
         $medico->password = bcrypt($request->input('password'));
-        
         $medico->save();
         $mensaje="Medico registrado correctamente";
         return redirect()->route('login')->with('mensaje',$mensaje);
-    
     }
+
 }
 
