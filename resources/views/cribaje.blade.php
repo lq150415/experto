@@ -7,6 +7,24 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Paciente :</label>
     <div class="col-lg-9">
+      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php echo $paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas;?>">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Edad :</label>
+    <div class="col-lg-9">
+      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php 
+      $edad = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('Y'); 
+      $edad2 = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('m');
+      $edad3 = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('d');
+      
+       echo $date = \Carbon\Carbon::createFromDate($edad,$edad3,$edad2)->age;
+       ?>">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Sexo :</label>
+    <div class="col-lg-9">
       <input type="text" readonly name="estatura"  class="form-control" id="" value="Luis Felipe Quisbert">
     </div>
     </div>
@@ -154,12 +172,10 @@
 </div>
      <div class = "modal-footer">
             <button type = "submit" class = "btn btn-primary" data-dismiss = "modal"><span class="glyphicon glyphicon-check"></span>
-              Registrar cliente
+              Diagnosticar
             </button>
             
-            <button type = "button" class = "btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
-               Limpiar datos
-            </button>
+            
          </div>
  	</fieldset>
 	</div>

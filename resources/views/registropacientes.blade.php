@@ -76,7 +76,7 @@
     <label for="" class="col-lg-4 control-label">Direccion</label>
     <div class="col-lg-7">
     <textarea type="text" name="dir_usu" value="<?=old("dir_usu")?>" class="form-control" id=""
-             placeholder="Direccion de cliente"></textarea>
+             placeholder="Direccion de paciente"></textarea>
     </div>
     </div>
      <div class = "modal-footer">

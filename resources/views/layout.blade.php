@@ -39,7 +39,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#" style="padding:0px;"><img height="50px;" src="assets/img/salud.png"></a>
+    <a class="navbar-brand" href="#" style="padding:0px;"><img height="50px;" src="../../assets/img/salud.png"></a>
   </div>
  
   <!-- Agrupar los enlaces de navegación, los formularios y cualquier

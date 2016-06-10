@@ -18,9 +18,9 @@ class LoginController extends Controller
     	return view('principal');
     }
    
-    public function index4()
+    public function index4($id)
     {
-    	return view('diagnostico');
+    	return view('diagnostico')->with('id',$id);
     }
     public function registro(Request $request)
     {

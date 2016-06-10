@@ -3,7 +3,7 @@
 namespace experto\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use experto\Paciente;
 use experto\Http\Requests;
 
 class DiagnosticoController extends Controller
@@ -12,8 +12,9 @@ class DiagnosticoController extends Controller
     {
     	return view('evaluacionglobal');
     }
-     public function index2()
+     public function index2($id)
     {
-    	return view('cribaje');
+    	$paciente= Paciente::where('id','=',$id)->first();
+    	return view('cribaje')->with('id',$id)->with('paciente',$paciente);
     }
 }

@@ -70,7 +70,7 @@
         <li style="width:80%;" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cuestionario <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard colorspan"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="{{url('cribaje')}}">· Cribaje</a></li>
+            <li><a href="<?php echo $id;?>/cribaje">· Cribaje</a></li>
             <li><a href="#">· Evaluacion alimentaria</a></li>
             <li><a href="{{url('global')}}">· Evaluacion global</a></li>
           </ul>
