@@ -25,7 +25,7 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Sexo :</label>
     <div class="col-lg-9">
-      <input type="text" readonly name="estatura"  class="form-control" id="" value="Luis Felipe Quisbert">
+      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php echo $paciente->SexPas;?>">
     </div>
     </div>
     <div class="form-group">
