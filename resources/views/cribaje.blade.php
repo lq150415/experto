@@ -3,17 +3,17 @@
 <div  style="width:70%; background:#fff;float:right; margin-top:1%">
 	<div class="alert alert-success">Cribaje - Cuestionario </div>
 	<div class="alert panel panel-success cuerpo" style="background:#fff; margin-top:-2.7%">
-		<form class="form-horizontal" action="" method="POST">
+		<form class="form-horizontal" action="diagnosticar" method="POST">
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Paciente :</label>
     <div class="col-lg-9">
-      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php echo $paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas;?>">
+      <input type="text" readonly name="paciente"  class="form-control" id="" value="<?php echo $paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas;?>">
     </div>
     </div>
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Edad :</label>
     <div class="col-lg-9">
-      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php 
+      <input type="text" readonly name="edad"  class="form-control" id="" value="<?php 
       $edad = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('Y'); 
       $edad2 = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('m');
       $edad3 = \Carbon\Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('d');
@@ -25,20 +25,20 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-1 control-label label label-primary">Sexo :</label>
     <div class="col-lg-9">
-      <input type="text" readonly name="estatura"  class="form-control" id="" value="<?php echo $paciente->SexPas;?>">
+      <input type="text" readonly name="sexo"  class="form-control" id="" value="<?php echo $paciente->SexPas;?>">
     </div>
     </div>
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-4 control-label">Estatura</label>
     <div class="col-lg-7">
-      <input type="number" name="estatura" value="<?=old("estatura")?>" class="form-control" id=""
+      <input type="number" step="any" name="estaturaactual" value="<?=old("estatura")?>" class="form-control" id=""
              placeholder="Digite la estatura en metros">
     </div>
  	</div>
  	<div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-4 control-label">Peso</label>
     <div class="col-lg-7">
-      <input type="number" name="estatura" value="<?=old("estatura")?>" class="form-control" id=""
+      <input type="number" step="any" name="pesoactual" value="<?=old("estatura")?>"  class="form-control" id=""
              placeholder="Digite el peso en Kg">
     </div>
  	</div> 	
@@ -84,26 +84,26 @@
     </div>
     <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_1" value="0" checked>
+    <input type="radio" name="opciones2" id="opciones_1" value="0" checked>
     a)   Perdido de peso >3 kg 
   </label>
 </div>
   <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_2" value="1" checked>
+    <input type="radio" name="opciones2" id="opciones_2" value="1" checked>
     b)  No lo sabe 
   </label>
 </div>
 <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_3" value="2">
+    <input type="radio" name="opciones2" id="opciones_3" value="2">
    c) Pérdida de peso entre 1>3 kg
 
   </label>
 </div>
 <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_3" value="3">
+    <input type="radio" name="opciones2" id="opciones_3" value="3">
    d)    No perdido peso
 
 
@@ -114,21 +114,21 @@
     </div>
     <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_1" value="0" checked>
+    <input type="radio" name="opciones3" id="opciones_1" value="0" checked>
     a) Del trabajo a la casa
 
   </label>
 </div>
   <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_2" value="1" checked>
+    <input type="radio" name="opciones3" id="opciones_2" value="1" checked>
    b)  Realiza caminatas 
 
   </label>
 </div>
 <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_3" value="2">
+    <input type="radio" name="opciones3" id="opciones_3" value="2">
    c) Realiza actividades físicas 
 
   </label>
@@ -138,14 +138,14 @@
     </div>
     <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_1" value="0" checked>
+    <input type="radio" name="opciones4" id="opciones_1" value="0" checked>
     a) Si 
 
   </label>
 </div>
   <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_2" value="1" checked>
+    <input type="radio" name="opciones4" id="opciones_2" value="1" checked>
     b) No 
   </label>
 </div>
@@ -154,19 +154,19 @@
     </div>
     <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_1" value="0" checked>
+    <input type="radio" name="opciones5" id="opciones_1" value="0" checked>
     a) 1 comida
   </label>
 </div>
   <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_2" value="1" checked>
+    <input type="radio" name="opciones5" id="opciones_2" value="1" checked>
     b) 2 comidas 
   </label>
 </div>
 <div class="radio">
   <label>
-    <input type="radio" name="opciones" id="opciones_3" value="2">
+    <input type="radio" name="opciones5" id="opciones_3" value="2">
     c) 3 comidas
   </label>
 </div>

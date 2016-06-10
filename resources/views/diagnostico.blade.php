@@ -72,7 +72,7 @@
           <ul class="dropdown-menu forAnimate" role="menu">
             <li><a href="<?php echo $id;?>/cribaje">· Cribaje</a></li>
             <li><a href="#">· Evaluacion alimentaria</a></li>
-            <li><a href="{{url('global')}}">· Evaluacion global</a></li>
+            <li><a href="<?php echo $id;?>/global">· Evaluacion global</a></li>
           </ul>
         </li>                    
       

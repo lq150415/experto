@@ -6,7 +6,7 @@
   </div>
   <div class="alert alert-danger">
   <center>
-    BIENVENIDO AL SISTEMA EXPERTO - USUARIO 
+    BIENVENIDO AL SISTEMA EXPERTO - <?php echo Auth::user()->NomMed.' '.Auth::user()->PatMed.' '.Auth::user()->MadMed?>
   </center>
   </div>
       

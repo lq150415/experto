@@ -19,7 +19,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/','LoginController@index2');
 Route::get('pacientes',['as'=>'pacientes','uses'=>'PacienteController@index']);
 Route::get('paciente/{id}','LoginController@index4');
-Route::get('global','DiagnosticoController@index');
+Route::get('paciente/{id}/global','DiagnosticoController@index');
 Route::get('paciente/{id}/cribaje','DiagnosticoController@index2');
+Route::post('paciente/{id}/diagnosticar','DiagnosticoController@store');
 Route::post('registrarpaciente','PacienteController@store');
+Route::get('paciente/resultado/{id}',['as'=>'paciente/resultado','uses'=>'DiagnosticoController@resultado']);
 });
