@@ -17,10 +17,7 @@ class LoginController extends Controller
     {
     	return view('principal');
     }
-    public function index3()
-    {
-    	return view('registropacientes');
-    }
+   
     public function index4()
     {
     	return view('diagnostico');
@@ -53,6 +50,15 @@ class LoginController extends Controller
 
          $request->flash();
         $medico= new Medico;
+        
+        $medico->NomMed= $request->input('nommed');
+        $medico->PatMed= $request->input('patmed');
+        $medico->MadMed= $request->input('madmed');
+        $medico->FecNacMed= $request->input('fecnacmed');
+        $medico->CIMed= $request->input('cimed').' '.$request->input('expmed');
+        $medico->UsuMed= $request->input('usumed');
+        $medico->password = bcrypt($request->input('password'));
+        $medico->save();
         if($medico->id<10)
         {
         $medico->CodMed= 'MED-00'.$medico->id;
@@ -62,13 +68,6 @@ class LoginController extends Controller
             $medico->CodMed= 'MED-'.$medico->id;
 
         }
-        $medico->NomMed= $request->input('nommed');
-        $medico->PatMed= $request->input('patmed');
-        $medico->MadMed= $request->input('madmed');
-        $medico->FecNacMed= $request->input('fecnacmed');
-        $medico->CIMed= $request->input('cimed');
-        $medico->UsuMed= $request->input('usumed');
-        $medico->password = bcrypt($request->input('password'));
         $medico->save();
         $mensaje="Medico registrado correctamente";
         return redirect()->route('login')->with('mensaje',$mensaje);

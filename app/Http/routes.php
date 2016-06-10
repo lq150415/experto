@@ -17,8 +17,9 @@ Route::post('registro','LoginController@registro');
 
 Route::group(['middleware' => 'auth'], function () {
 Route::get('/','LoginController@index2');
-Route::get('pacientes','LoginController@index3');
+Route::get('pacientes',['as'=>'pacientes','uses'=>'PacienteController@index']);
 Route::get('diagnostico','LoginController@index4');
 Route::get('global','DiagnosticoController@index');
 Route::get('cribaje','DiagnosticoController@index2');
+Route::post('registrarpaciente','PacienteController@store');
 });
