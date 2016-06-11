@@ -27,8 +27,14 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
+        $view = property_exists($this, 'loginView')
+                    ? $this->loginView : 'auth.authenticate';
 
-        return view('login');
+        if (view()->exists($view)) {
+            return view($view);
+        }
+
+        return view('auth.login');
     }
 
     /**
@@ -189,7 +195,7 @@ trait AuthenticatesUsers
      */
     public function loginUsername()
     {
-        return property_exists($this, 'username') ? $this->username : 'UsuMed';
+        return property_exists($this, 'username') ? $this->username : 'email';
     }
 
     /**

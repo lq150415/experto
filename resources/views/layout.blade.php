@@ -46,7 +46,7 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Inicio</a></li>
+      <li class="active"><a href="{{url('/')}}">Inicio</a></li>
       <li><a href="{{url('pacientes')}}">Registrar paciente</a></li>
       
     </ul>

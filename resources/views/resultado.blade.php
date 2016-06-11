@@ -45,7 +45,7 @@
             <br/><br/>
          	<p>El estado nutricional del paciente es desnutricion</p>
             <p>El paciente tiene indices de tener desnutricion se recomienda seguir la dieta</p><br/>
-            <button class="btn btn-danger">Generar dieta</button>
+            <a href="dietanor" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
          </div>
          </div>
@@ -56,7 +56,7 @@
             <br/><br/>
             <p>El estado nutricional del paciente es normal</p>
             <p>El paciente se encuentra saludable, solo algunas recomendaciones para seguir asi</p><br/>
-            <button class="btn btn-success">Recomendaciones</button>
+            <a href="dietanor" target="_blank" class="btn btn-success">Recomendaciones</a>
          <?php endif;?>
        
          <div class="form-group">
@@ -66,7 +66,7 @@
             <br/><br/>
             <p>El estado nutricional del paciente es desnutricion</p>
             <p>El paciente tiene indices de tener desnutricion se recomienda seguir la dieta</p><br/>
-            <button class="btn btn-danger">Generar dieta</button>
+            <a href="dietanor" target="_blank" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
          
          <div class="form-group">
@@ -76,7 +76,7 @@
             <br/><br/>
             <p>El estado nutricional del paciente es sobrepeso</p>
             <p>El paciente tiene indices de tener sobrepeso se recomienda seguir la dieta</p><br/>
-            <button class="btn btn-danger">Generar dieta</button>
+            <a href="dietaobe" target="_blank" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
       
          <div class="form-group">
@@ -86,7 +86,7 @@
             <br/><br/>
             <p>El estado nutricional del paciente es obesidad</p>
             <p>El paciente tiene indices de tener sobrepeso se recomienda seguir la dieta</p><br/>
-            <button class="btn btn-danger">Generar dieta</button>
+            <a href="dietaobe" target="_blank" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
          </div>
          </div>
