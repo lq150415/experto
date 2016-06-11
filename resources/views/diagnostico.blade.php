@@ -59,16 +59,16 @@
     <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1" >
       <ul class="nav navbar-nav" style="width:100%;">       
         <li style="width:80%;" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Antropomedico <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart colorspan"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Antropomedico <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign colorspan"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
             
-            <li><a href="#">· Circunferencial</a></li>
+            <li><a href="<?php echo $id;?>/circunferencia">· Circunferencial</a></li>
             <li><a href="#">· Pegue graso</a></li>
-            <li><a href="#">· IMC</a></li>
+            <li><a href="<?php echo $id;?>/imc">· IMC</a></li>
           </ul>
         </li>
         <li style="width:80%;" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cuestionario <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard colorspan"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cuestionario <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt colorspan"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
             <li><a href="<?php echo $id;?>/cribaje">· Cribaje</a></li>
             <li><a href="#">· Evaluacion alimentaria</a></li>
@@ -80,7 +80,31 @@
     </div>
   </div>
 </nav>
-
+<nav class="navbar2 navbar-default navbar-inverse sidebar"  role="navigation">
+    <div class="container-fluid" style="padding:0%;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>   
+        <p class="navbar-brand" href="#">CONTROL</p>   
+    </div>
+    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1" >
+      <ul class="nav navbar-nav" style="width:100%;">       
+        <li style="width:80%;" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Control de paciente <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-lock colorspan"></span></a>
+          <ul class="dropdown-menu forAnimate" role="menu">  
+            <li><button class="btn" id="despliega" onclick="javascript:muestra_oculta('contenido_a_mostrar')">· Historial medico</button></li>
+          </ul>
+        </li>
+                       
+      
+      </ul>
+    </div>
+  </div>
+</nav>
 	</div>
   </div>
 @stop

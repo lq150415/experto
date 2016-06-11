@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -21,7 +21,12 @@ Route::get('pacientes',['as'=>'pacientes','uses'=>'PacienteController@index']);
 Route::get('paciente/{id}','LoginController@index4');
 Route::get('paciente/{id}/global','DiagnosticoController@index');
 Route::get('paciente/{id}/cribaje','DiagnosticoController@index2');
+Route::get('paciente/{id}/imc','DiagnosticoController@index3');
+Route::get('paciente/{id}/circunferencia','DiagnosticoController@index4');
 Route::post('paciente/{id}/diagnosticar','DiagnosticoController@store');
+Route::post('paciente/{id}/diagnosticarimc','DiagnosticoController@imc');
+Route::post('paciente/{id}/evaluacionglobal','DiagnosticoController@evaluacionglobal');
+Route::post('paciente/{id}/diagnosticarcircunferencial','DiagnosticoController@circunferencial');
 Route::post('registrarpaciente','PacienteController@store');
 Route::get('paciente/resultado/{id}',['as'=>'paciente/resultado','uses'=>'DiagnosticoController@resultado']);
 });

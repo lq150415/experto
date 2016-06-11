@@ -2,7 +2,7 @@
 @section('cuerpo')
 <div class="container">
 <div  style="width:90%; background:#fff; margin-top:1%">
-	<div class="alert alert-success">Cribaje - Diagnostico <a style="margin-left:58%;" href="../../<?php echo "paciente/".$id;?>" class="btn btn-primary">Realizar nuevo diagnostico</a></div>
+	<div class="alert alert-success">IMC - Diagnostico <a href="../../<?php echo "paciente/".$id;?>" style="margin-left:58%;" class="btn btn-primary">Realizar nuevo diagnostico</a> </div>
 	<div class="alert panel panel-success cuerpo" style="background:#fff; margin-top:-2.7%">
 	 <div class="form-group">
     <label for="" class="col-lg-3 control-label label label-primary">Nombre del paciente :</label>
@@ -35,15 +35,12 @@
       <input type="text" readonly name="pesoideal"  class="form-control" id="" value="<?php echo round(($diagnostico->estatura)*($diagnostico->estatura)*23);?>">
     </div>
     </div><br/><br/>
-     
-        <div class="alert alert-info"><label><?php
-         echo $mensaje?></label>
-         <div class="form-group">
+     <div class="form-group">
            <?php if($mensaje2=='Desnutricion'):?>
-         	<div class="alert alert-danger">
+            <div class="alert alert-danger">
             <b>Diagnostico</b>
             <br/><br/>
-         	<p>El estado nutricional del paciente es desnutricion</p>
+            <p>El estado nutricional del paciente es desnutricion</p>
             <p>El paciente tiene indices de tener desnutricion se recomienda seguir la dieta</p><br/>
             <button class="btn btn-danger">Generar dieta</button>
          <?php endif;?>
@@ -88,7 +85,6 @@
             <p>El paciente tiene indices de tener sobrepeso se recomienda seguir la dieta</p><br/>
             <button class="btn btn-danger">Generar dieta</button>
          <?php endif;?>
-         </div>
          </div>
          </div>
 	</div>

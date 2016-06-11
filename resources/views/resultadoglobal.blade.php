@@ -2,7 +2,7 @@
 @section('cuerpo')
 <div class="container">
 <div  style="width:90%; background:#fff; margin-top:1%">
-	<div class="alert alert-success">Cribaje - Diagnostico <a style="margin-left:58%;" href="../../<?php echo "paciente/".$id;?>" class="btn btn-primary">Realizar nuevo diagnostico</a></div>
+	<div class="alert alert-success">Evaluacion global - Diagnostico <a style="margin-left:50%;" href="../../<?php echo "paciente/".$id;?>" class="btn btn-primary">Realizar nuevo diagnostico</a></div>
 	<div class="alert panel panel-success cuerpo" style="background:#fff; margin-top:-2.7%">
 	 <div class="form-group">
     <label for="" class="col-lg-3 control-label label label-primary">Nombre del paciente :</label>

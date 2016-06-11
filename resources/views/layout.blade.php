@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Salud y vida</title>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+ 
 		<script type="text/javascript" src="<?php echo asset('assets/js/ajax.js')?>"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo asset('assets/css/bootstrap.css')?>">
     <script type="text/javascript" language="javascript" src="<?php echo asset('assets/js/bootstrap.js')?>"></script>
@@ -51,8 +51,7 @@
       
     </ul>
     <ul class="nav navbar-nav navbar-left">
-      <li><a href="#">Control</a></li>
-      <li><a href="{{ url('diagnostico')}}">Diagnosticos</a></li>
+      
       <li><a href="#">Reportes</a></li> 
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

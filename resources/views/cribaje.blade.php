@@ -1,7 +1,8 @@
-@extends ('diagnostico')
-@section('cuestionarios')
-<div  style="width:70%; background:#fff;float:right; margin-top:1%">
-	<div class="alert alert-success">Cribaje - Cuestionario </div>
+@extends ('layout')
+@section('cuerpo')
+<div class="container">
+<div  style="width:100%; background:#fff; margin-top:1%">
+	<div class="alert alert-success">Cribaje - Cuestionario <a style="margin-left:62%;" href="../<?php echo $id;?>" class="btn btn-primary">Realizar nuevo diagnostico</a></div>
 	<div class="alert panel panel-success cuerpo" style="background:#fff; margin-top:-2.7%">
 		<form class="form-horizontal" action="diagnosticar" method="POST">
     <div class="form-group">
@@ -42,20 +43,6 @@
              placeholder="Digite el peso en Kg">
     </div>
  	</div> 	
- 	<div class="form-group">
-    <label for="ejemplo_email_3" class="col-lg-4 control-label">Circunferencia del brazo</label>
-    <div class="col-lg-7">
-      <input type="number" name="CMB" value="<?=old("estatura")?>" class="form-control" id=""
-             placeholder="Digite la circunferencia del brazo">
-    </div>
- 	</div>
- 	<div class="form-group">
-    <label for="ejemplo_email_3" class="col-lg-4 control-label">Pliegue Tripcial</label>
-    <div class="col-lg-7">
-      <input type="number" name="CMB" value="<?=old("estatura")?>" class="form-control" id=""
-             placeholder="Digite el pliegue tripcial">
-    </div>
- 	</div>
  	<fieldset style="border: 1px #555 solid; border-radius:5px; padding:0 10px 10px 10px;" >
  		<legend style="width:auto; border-bottom:0px;">Cuestionario</legend>
       <div class="form-group">
@@ -179,6 +166,7 @@
          </div>
  	</fieldset>
 	</div>
+</div>
 </div>
 </form>
 

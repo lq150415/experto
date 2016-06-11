@@ -5,6 +5,7 @@ namespace experto\Http\Controllers;
 use Illuminate\Http\Request;
 use experto\Medico;
 use experto\Paciente;
+use experto\Diagnostico;
 use Validator;
 use experto\Http\Requests;
 
@@ -22,7 +23,8 @@ class LoginController extends Controller
     public function index4($id)
     {
         $perfil= Paciente::where('id','=',$id)->first();
-    	return view('perfil-diagnostico')->with('id',$id)->with('perfil',$perfil);
+        $diagnosticos=Diagnostico::where('diagnostico.CodPas','=',$id)->join('paciente','diagnostico.CodPas','=','paciente.id')->get();
+    	return view('perfil-diagnostico')->with('id',$id)->with('perfil',$perfil)->with('diagnosticos',$diagnosticos);
     }
     public function registro(Request $request)
     {
