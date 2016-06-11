@@ -45,7 +45,7 @@
             <br/><br/>
          	<p>El estado nutricional del paciente es desnutricion</p>
             <p>El paciente tiene indices de tener desnutricion se recomienda seguir la dieta</p><br/>
-            <a href="dietanor" class="btn btn-danger">Generar dieta</a>
+            <a href="dietades" target="_blank" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
          </div>
          </div>
@@ -66,7 +66,7 @@
             <br/><br/>
             <p>El estado nutricional del paciente es desnutricion</p>
             <p>El paciente tiene indices de tener desnutricion se recomienda seguir la dieta</p><br/>
-            <a href="dietanor" target="_blank" class="btn btn-danger">Generar dieta</a>
+            <a href="dietades" target="_blank" class="btn btn-danger">Generar dieta</a>
          <?php endif;?>
          
          <div class="form-group">

@@ -30,5 +30,6 @@ Route::post('paciente/{id}/diagnosticarcircunferencial','DiagnosticoController@c
 Route::post('registrarpaciente','PacienteController@store');
 Route::get('paciente/resultado/{id}',['as'=>'paciente/resultado','uses'=>'DiagnosticoController@resultado']);
 Route::get('paciente/{id}/dietaobe','DiagnosticoController@pdfobesidad');
+Route::get('paciente/{id}/dietades','DiagnosticoController@pdfdesnutricion');
 Route::get('paciente/{id}/dietanor','DiagnosticoController@pdfnormal');
 });
