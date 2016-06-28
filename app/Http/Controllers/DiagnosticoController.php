@@ -7,6 +7,8 @@ use experto\Paciente;
 use experto\Diagnostico;
 use experto\Http\Requests;
 use Carbon\Carbon;
+use PDF;
+use TCPDF;
 use Illuminate\Support\Facades\Auth;
 
 class DiagnosticoController extends Controller
@@ -339,6 +341,168 @@ $total=$request->input('opciones')+$request->input('opciones2')+$request->input(
             }
         }
  return view('resultadocircunferencial')->with('id',$id)->with('mensaje2',$mensaje2)->with('paciente',$paciente)->with('imc',$imc)->with('diagnostico',$diagnostico); 
+    }
+
+    public function pdfobesidad(Request $request,$id)
+    {
+    	$pdf = new TCPDF('P','mm','LETTER', true, 'UTF-8', false);
+        $pdf->SetTitle('Dieta para la obesidad');  
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetAutoPageBreak(TRUE, 10);
+        $pdf->SetMargins(15, 15, 10);
+        $pdf->AddPage();
+        $pdf->Image('assets/img/logo.jpg', 13, 15, 40, 18, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        $pdf->Line ( 59, 25,205,25,array('width' => 0.3,'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+        $pdf->SetFont('','B','11');
+        $pdf->SetXY(135, 20);
+        $pdf->Write(0,'Dieta para la obesidad - Salud y vida','','',false);
+        $pdf->SetXY(93, 25);
+        $usuario = 'Nombre: '.Auth::user()->NomMed.' '.Auth::user()->PatMed.' '.Auth::user()->MadMed.' FECHA: '.Carbon::now();
+        $pdf->Write(0,'Universidad Privada Franz Tamayo - Ingenieria en sistemas','','',false); 
+        $pdf->SetXY(70,30);
+        $pdf->SetFont('','','11');
+        $pdf->write2DBarcode ( $usuario, 'QRCODE,M', 185, 35, 15, 15, '','','');
+        $pdf->SetFont('','B','12');
+        $pdf->SetXY(80, 40);
+        $pdf->Write(0,'DIETA PARA BAJAR DE PESO','','',false);
+        $paciente=Paciente::where('id','=',$id)->first();
+        $pdf->SetFont('','B','11');        
+        $pdf->SetXY(15, 55);
+        $pdf->Write(0,'DATOS PERSONALES','','',false);
+        $pdf->SetXY(19, 62);
+         $pdf->SetFont('','','10');   
+        $pdf->Write(0,'Paciente : '.$paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas,'','',false);
+        $diagnostico=Diagnostico::where('CodPas','=',$id)->orderBy('fecDia','DESC')->first();
+        $pdf->SetXY(19, 69);
+        $pdf->Write(0,'Talla : '.$diagnostico->estatura.' m','','',false);
+        $pdf->SetXY(19, 76);
+        $pdf->Write(0,'Peso : '.$diagnostico->pesAct.' Kg','','',false);
+        $edad = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('Y'); 
+      	$edad2 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('m');
+      	$edad3 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('d');
+      
+       $date = \Carbon\Carbon::createFromDate($edad,$edad3,$edad2)->age;
+        $pdf->SetXY(19, 83);
+        $pdf->Write(0,'Edad : '.$date.' años','','',false);
+        $pdf->SetXY(19, 90);
+        $pdf->Write(0,'Sexo : '.$paciente->SexPas,'','',false);
+        $pdf->SetXY(19, 97);
+        $pdf->Write(0,'IMC : '.round(($diagnostico->pesAct)/(($diagnostico->estatura)*($diagnostico->estatura)),2),'','',false);
+        $pdf->SetXY(19, 104);
+        $pdf->Write(0,'Peso Ideal: '.round(($diagnostico->estatura)*($diagnostico->estatura)*23,2).' Kg','','',false);
+        $pdf->Image('assets/img/dieta1.jpg', 30, 115, 160, 150, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        
+        $pdf->Image('assets/img/dieta2.jpg', 30, 325, 160, 150, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        $pdf->Output('reportekardex.pdf');
+    }
+
+ public function pdfdesnutricion(Request $request,$id)
+    {
+    	$pdf = new TCPDF('P','mm','LETTER', true, 'UTF-8', false);
+        $pdf->SetTitle('Dieta para la desnutricion');  
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetAutoPageBreak(TRUE, 10);
+        $pdf->SetMargins(15, 15, 10);
+        $pdf->AddPage();
+        $pdf->Image('assets/img/logo.jpg', 13, 15, 40, 18, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        $pdf->Line ( 59, 25,205,25,array('width' => 0.3,'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+        $pdf->SetFont('','B','11');
+        $pdf->SetXY(130, 20);
+        $pdf->Write(0,'Dieta para la desnutricion - Salud y vida','','',false);
+        $pdf->SetXY(93, 25);
+        $usuario = 'Nombre: '.Auth::user()->NomMed.' '.Auth::user()->PatMed.' '.Auth::user()->MadMed.' FECHA: '.Carbon::now();
+        $pdf->Write(0,'Universidad Privada Franz Tamayo - Ingenieria en sistemas','','',false); 
+        $pdf->SetXY(70,30);
+        $pdf->SetFont('','','11');
+        $pdf->write2DBarcode ( $usuario, 'QRCODE,M', 185, 35, 15, 15, '','','');
+        $pdf->SetFont('','B','12');
+        $pdf->SetXY(80, 40);
+        $pdf->Write(0,'DIETA PARA SUBIR DE PESO','','',false);
+        $paciente=Paciente::where('id','=',$id)->first();
+        $pdf->SetFont('','B','11');        
+        $pdf->SetXY(15, 55);
+        $pdf->Write(0,'DATOS PERSONALES','','',false);
+        $pdf->SetXY(19, 62);
+         $pdf->SetFont('','','10');   
+        $pdf->Write(0,'Paciente : '.$paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas,'','',false);
+        $diagnostico=Diagnostico::where('CodPas','=',$id)->orderBy('fecDia','DESC')->first();
+        $pdf->SetXY(19, 69);
+        $pdf->Write(0,'Talla : '.$diagnostico->estatura.' m','','',false);
+        $pdf->SetXY(19, 76);
+        $pdf->Write(0,'Peso : '.$diagnostico->pesAct.' Kg','','',false);
+        $edad = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('Y'); 
+      	$edad2 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('m');
+      	$edad3 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('d');
+      
+       $date = \Carbon\Carbon::createFromDate($edad,$edad3,$edad2)->age;
+        $pdf->SetXY(19, 83);
+        $pdf->Write(0,'Edad : '.$date.' años','','',false);
+        $pdf->SetXY(19, 90);
+        $pdf->Write(0,'Sexo : '.$paciente->SexPas,'','',false);
+        $pdf->SetXY(19, 97);
+        $pdf->Write(0,'IMC : '.round(($diagnostico->pesAct)/(($diagnostico->estatura)*($diagnostico->estatura)),2),'','',false);
+        $pdf->SetXY(19, 104);
+        $pdf->Write(0,'Peso Ideal: '.round(($diagnostico->estatura)*($diagnostico->estatura)*23,2).' Kg','','',false);
+        $pdf->Image('assets/img/dieta1.jpg', 30, 115, 160, 150, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        
+        $pdf->Image('assets/img/dieta2.jpg', 30, 325, 160, 150, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        $pdf->Output('reportekardex.pdf');
+    }
+
+     public function pdfnormal(Request $request,$id)
+    {
+    	$pdf = new TCPDF('P','mm','LETTER', true, 'UTF-8', false);
+        $pdf->SetTitle('Recomendaciones');  
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetAutoPageBreak(TRUE, 10);
+        $pdf->SetMargins(15, 15, 10);
+        $pdf->AddPage();
+        $pdf->Image('assets/img/logo.jpg', 13, 15, 40, 18, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        $pdf->Line ( 59, 25,205,25,array('width' => 0.3,'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+        $pdf->SetFont('','B','11');
+        $pdf->SetXY(142, 20);
+        $pdf->Write(0,'Recomendaciones - Salud y vida','','',false);
+        $pdf->SetXY(93, 25);
+        $usuario = 'Nombre: '.Auth::user()->NomMed.' '.Auth::user()->PatMed.' '.Auth::user()->MadMed.' FECHA: '.Carbon::now();
+        $pdf->Write(0,'Universidad Privada Franz Tamayo - Ingenieria en sistemas','','',false); 
+        $pdf->SetXY(70,30);
+        $pdf->SetFont('','','11');
+        $pdf->write2DBarcode ( $usuario, 'QRCODE,M', 185, 35, 15, 15, '','','');
+        $pdf->SetFont('','B','12');
+        $pdf->SetXY(60, 40);
+        $pdf->Write(0,'RECOMENDACIONES PARA UNA BUENA SALUD','','',false);
+        $paciente=Paciente::where('id','=',$id)->first();
+        $pdf->SetFont('','B','11');        
+        $pdf->SetXY(15, 55);
+        $pdf->Write(0,'DATOS PERSONALES','','',false);
+        $pdf->SetXY(19, 62);
+         $pdf->SetFont('','','10');   
+        $pdf->Write(0,'Paciente : '.$paciente->NomPas.' '.$paciente->PatMat.' '.$paciente->MatPas,'','',false);
+        $diagnostico=Diagnostico::where('CodPas','=',$id)->orderBy('fecDia','DESC')->first();
+        $pdf->SetXY(19, 69);
+        $pdf->Write(0,'Talla : '.$diagnostico->estatura.' m','','',false);
+        $pdf->SetXY(19, 76);
+        $pdf->Write(0,'Peso : '.$diagnostico->pesAct.' Kg','','',false);
+        $edad = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('Y'); 
+      	$edad2 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('m');
+      	$edad3 = Carbon::createFromFormat('Y-m-d', $paciente->FecNacPas)->format('d');
+      
+       $date = \Carbon\Carbon::createFromDate($edad,$edad3,$edad2)->age;
+        $pdf->SetXY(19, 83);
+        $pdf->Write(0,'Edad : '.$date.' años','','',false);
+        $pdf->SetXY(19, 90);
+        $pdf->Write(0,'Sexo : '.$paciente->SexPas,'','',false);
+        $pdf->SetXY(19, 97);
+        $pdf->Write(0,'IMC : '.round(($diagnostico->pesAct)/(($diagnostico->estatura)*($diagnostico->estatura)),2),'','',false);
+        $pdf->SetXY(19, 104);
+        $pdf->Write(0,'Peso Ideal: '.round(($diagnostico->estatura)*($diagnostico->estatura)*23,2).' Kg','','',false);
+        $pdf->Image('assets/img/dieta4.jpg', 10, 115, 180, 150, 'JPG', '', '', true, 250, '', false, false, false, false, false, false);
+        
+        
+        $pdf->Output('reportekardex.pdf');
     }
     public function resultado()
     {
