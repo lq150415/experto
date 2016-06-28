@@ -24,11 +24,6 @@ class Ftp extends AbstractFtpAdapter
     protected $ignorePassiveAddress = null;
 
     /**
-     * @var bool
-     */
-    protected $recurseManually = false;
-
-    /**
      * @var array
      */
     protected $configurable = [
@@ -45,7 +40,6 @@ class Ftp extends AbstractFtpAdapter
         'transferMode',
         'systemType',
         'ignorePassiveAddress',
-        'recurseManually',
     ];
 
     /**
@@ -92,14 +86,6 @@ class Ftp extends AbstractFtpAdapter
     public function setIgnorePassiveAddress($ignorePassiveAddress)
     {
         $this->ignorePassiveAddress = $ignorePassiveAddress;
-    }
-
-    /**
-     * @param bool $recurseManually
-     */
-    public function setRecurseManually($recurseManually)
-    {
-        $this->recurseManually = $recurseManually;
     }
 
     /**
@@ -321,7 +307,7 @@ class Ftp extends AbstractFtpAdapter
     {
         // List the current directory
         $listing = ftp_nlist($connection, '.') ?: [];
-
+        
         foreach ($listing as $key => $item) {
             if (preg_match('~^\./.*~', $item)) {
                 $listing[$key] = substr($item, 2);
@@ -449,35 +435,10 @@ class Ftp extends AbstractFtpAdapter
     protected function listDirectoryContents($directory, $recursive = true)
     {
         $directory = str_replace('*', '\\*', $directory);
-
-        if ($recursive && $this->recurseManually) {
-            return $this->listDirectoryContentsRecursive($directory);
-        }
-
         $options = $recursive ? '-alnR' : '-aln';
         $listing = ftp_rawlist($this->getConnection(), $options . ' ' . $directory);
 
         return $listing ? $this->normalizeListing($listing, $directory) : [];
-    }
-
-    /**
-     * @inheritdoc
-     *
-     * @param string $directory
-     */
-    protected function listDirectoryContentsRecursive($directory)
-    {
-        $listing = $this->normalizeListing(ftp_rawlist($this->getConnection(), '-aln' . ' ' . $directory) ?: []);
-        $output = [];
-
-        foreach ($listing as $directory) {
-            $output[] = $directory;
-            if ($directory['type'] !== 'dir') continue;
-
-            $output = array_merge($output, $this->listDirectoryContentsRecursive($directory['path']));
-        }
-
-        return $output;
     }
 
     /**
@@ -489,12 +450,12 @@ class Ftp extends AbstractFtpAdapter
     public function isConnected()
     {
         try {
-            return is_resource($this->connection) && ftp_rawlist($this->connection, '/') !== false;
+            return is_resource($this->connection) && ftp_systype($this->connection) !== false;
         } catch (ErrorException $e) {
             fclose($this->connection);
             $this->connection = null;
 
-            if (strpos($e->getMessage(), 'ftp_rawlist') === false) {
+            if (strpos($e->getMessage(), 'ftp_systype') === false) {
                 throw $e;
             }
 

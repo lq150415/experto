@@ -161,7 +161,7 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
             return;
         }
 
-        $id = $this->session->get($this->getName());
+        $id = $this->session->get($this->getName(), $this->getRecallerId());
 
         if (is_null($id) && $this->user()) {
             $id = $this->user()->getAuthIdentifier();
@@ -263,7 +263,7 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      * @param  array  $extraConditions
      * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function basic($field = 'email', $extraConditions = [])
+    public function basic($field = 'UsuMed', $extraConditions = [])
     {
         if ($this->check()) {
             return;
@@ -286,7 +286,7 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      * @param  array  $extraConditions
      * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function onceBasic($field = 'email', $extraConditions = [])
+    public function onceBasic($field = 'UsuMed', $extraConditions = [])
     {
         $credentials = $this->getBasicCredentials($this->getRequest(), $field);
 
